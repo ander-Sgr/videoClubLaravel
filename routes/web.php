@@ -32,8 +32,6 @@ Route::controller(CatalogController::class)->group(function (){
     Route::get('/catalog/create', 'create');
     
     Route::get('/catalog/edit/{id}', 'edit');
-
-
 });
 
 

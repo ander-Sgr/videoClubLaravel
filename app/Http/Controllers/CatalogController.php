@@ -207,7 +207,8 @@ class CatalogController extends Controller
         return view('catalog.index', ['peliculas' => $this->pelis]);
     }
 
-    public function postEdit()
+    public function postEdit(Request $request)
     {
+
     }
 }
