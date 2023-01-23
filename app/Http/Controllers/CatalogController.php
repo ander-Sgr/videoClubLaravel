@@ -169,14 +169,16 @@ class CatalogController extends Controller
         )
     );
 
-    function index()
+    public function index()
     {
         return view('catalog.index', ['peliculas' => $this->pelis]);
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('catalog.show');
+        if (array_key_exists($id, $this->pelis)) {
+            return view('catalog.show', ['id' => $id, 'peli' => $this->pelis[$id]]);
+        }
     }
 
     public function create()
@@ -184,8 +186,28 @@ class CatalogController extends Controller
         return view('catalog.create');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('catalog.edit');
+        if (array_key_exists($id, $this->pelis)) {
+            return view('catalog.edit', ['id' => $id, 'peli' => $this->pelis[$id]]);
+        }
+    }
+
+    public function postCreate(Request $request)
+    {
+        $arrData = array(
+            'titol' => $request->input('titol'),
+            'any' => $request->input('any'),
+            'director' => $request->input('director'),
+            'poster' => $request->input('poster'),
+            'llogat' => false,
+            'resum' => $request->input('resum')
+        );
+        array_push($this->pelis, $arrData);
+        return view('catalog.index', ['peliculas' => $this->pelis]);
+    }
+
+    public function postEdit()
+    {
     }
 }
