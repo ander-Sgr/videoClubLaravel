@@ -207,8 +207,20 @@ class CatalogController extends Controller
         return view('catalog.index', ['peliculas' => $this->pelis]);
     }
 
-    public function postEdit(Request $request)
+    public function postEdit(Request $request, $id)
     {
-
+        $arrData = array(
+            'titol' => $request->input('titol'),
+            'any' => $request->input('any'),
+            'director' => $request->input('director'),
+            'poster' => $request->input('poster'),
+            'llogat' => false,
+            'resum' => $request->input('resum')
+        );
+    
+        if (array_key_exists($id, $this->pelis)) {
+            $this->pelis[$id] = $arrData;
+            return view('catalog.show', ['id' => $id, 'peli' => $this->pelis[$id]]);
+        }
     }
 }

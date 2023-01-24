@@ -20,10 +20,10 @@ Route::get('/',
     [HomeController::class, 'home']
 );
 
+Route::put('/catalog/edit/{id}', [CatalogController::class, 'postEdit']);
+
 Route::controller(CatalogController::class)->group(function (){
     Route::post('/catalog/create', 'postCreate');
-
-    Route::put('/catalog/edit/{id}', 'edit');
     
     Route::get('/catalog', 'index');
     
