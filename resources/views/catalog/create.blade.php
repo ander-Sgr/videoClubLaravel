@@ -6,7 +6,6 @@
                 <div class="card-header text-center">
                     Afegir pel·lícula
                 </div>
-         
                 <div class="card-body" style="padding:30px">
                     <form method="POST">
                         @csrf

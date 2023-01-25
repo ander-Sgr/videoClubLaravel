@@ -16,15 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 
-    [HomeController::class, 'home']
-);
+Route::get('/',  [HomeController::class, 'home']);
 
-Route::put('/catalog/edit/{id}', [CatalogController::class, 'postEdit']);
+
 
 Route::controller(CatalogController::class)->group(function (){
     Route::post('/catalog/create', 'postCreate');
     
+    Route::put('/catalog/edit/{id}',  'postEdit');
+
     Route::get('/catalog', 'index');
     
     Route::get('/catalog/show/{id}', 'show');
@@ -33,6 +33,5 @@ Route::controller(CatalogController::class)->group(function (){
     
     Route::get('/catalog/edit/{id}', 'edit');
 });
-
 
 
